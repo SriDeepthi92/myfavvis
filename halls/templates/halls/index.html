@@ -1,0 +1,57 @@
+{% extends 'halls/base.html' %}
+
+{% block content %}
+
+	{% if success == False %}
+		<p>{{message}}</p>
+	{% else %}
+
+		<div class="container">
+		  <div class="row mt-3">
+		    <div class="col-md-8">
+				<p class="h3-responsive text-center bg-dark text-white"> Now Showing in Cinemas</p>
+
+				<div class="row">
+
+					{% for movie in now_playing.results %}
+						<div class="col-lg-4 col-md-12 mb-4">
+						 <div class="card mdb-color text-center z-depth-2">
+						 	<a href="{% url 'detail' id=movie.id %}">
+						 	<div class="view overlay zoom">
+							  <img src="http://image.tmdb.org/t/p/w500//{{ movie.poster_path }}" class="img-fluid" alt="{{ movie.title }}">
+							</div>
+							</a>
+						  </div>
+						</div>
+					{% endfor %}
+
+				</div>
+		    </div>
+		    <div class="col-md-4">
+				<p class="h3-responsive text-center bg-dark text-white">Upcoming Movies</p>
+				<ul class="list-unstyled">
+				{% for movie in upcoming.results %}
+					<a href="{% url 'detail' id=movie.id %}"><li>{{movie.title}}</li></a>
+				{% endfor %}
+				</ul>
+
+				<p class="h3-responsive text-center bg-dark text-white">Popular Movies</p>
+				<ul class="list-unstyled">
+				{% for movie in popular.results %}
+					<a href="{% url 'detail' id=movie.id %}"><li>{{movie.title}}</li></a>
+				{% endfor %}
+				</ul>
+
+				<p class="h3-responsive text-center bg-dark text-white">Top Rated Movies</p>
+				<ul class="list-unstyled">
+				{% for movie in top_rated.results %}
+					<a href="{% url 'detail' id=movie.id %}"><li>{{movie.title}}</li></a>
+				{% endfor %}
+				</ul>
+		    </div>
+		  </div>
+		</div>
+
+	{% endif %}
+
+{% endblock %}

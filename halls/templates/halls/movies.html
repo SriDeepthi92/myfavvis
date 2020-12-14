@@ -1,0 +1,13 @@
+{% extends 'halls/base.html' %}
+{% block content %}
+{% for movie in movies %}
+<div class="card">
+  <img src="http://image.tmdb.org/t/p/original//{{ movie.poster_path }}" class="card-img-top" alt="{{ movie.title }}">
+  <div class="card-body">
+    <h5 class="card-title">{{ movie.title }}</h5>
+    <p class="card-text">{{ movie.overview }}</p>
+    <p class="card-text"><small class="text-muted"></small></p>
+  </div>
+</div>
+{% endfor %}
+{% endblock content %}
